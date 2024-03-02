@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .calculator-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator {
+            text-align: center;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .result-box {
+            background-color: lightblue;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .input-label {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .input-field {
+            font-size: 24px;
+        }
+        .calculate-button {
+            font-size: 24px;
+            font-weight: bold;
+            background-color: #007bff; /* Blue background color */
+            color: white; /* White text color */
+            border: none;
+            border-radius: 5px;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .calculate-button:hover {
+            background-color: #0056b3; /* Darker blue on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator-container">
+        <div class="calculator">
+            <h1>Weight Converter</h1>
+            <form id="converter-form">
+                <label for="weight-input" class="input-label">Weight:</label>
+                <input type="number" id="weight-input" class="input-field" required><br><br>
+                
+                <label for="conversion-type" class="input-label">Conversion Type:</label>
+                <select id="conversion-type" class="input-field">
+                    <option value="lbs-to-kg">Pounds to Kilograms</option>
+                    <option value="kg-to-lbs">Kilograms to Pounds</option>
+                </select><br><br>
+                
+                <button type="button" class="calculate-button">Calculate</button>
+            </form>
+            <div id="result-container"></div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector(".calculate-button").addEventListener("click", function() {
+            // Get input values
+            var weight = parseFloat(document.getElementById("weight-input").value);
+            var conversionType = document.getElementById("conversion-type").value;
+
+            // Perform the conversion
+            var result;
+            if (conversionType === "lbs-to-kg") {
+                result = weight / 2.20462; // 1 pound = 0.453592 kilograms
+            } else {
+                result = weight * 2.20462; // 1 kilogram = 2.20462 pounds
+            }
+
+            // Display the result
+            var resultContainer = document.getElementById("result-container");
+            resultContainer.innerHTML = "<div class='result-box'>" + result.toFixed(2) + "</div>";
+        });
+    </script>
+</body>
+</html>
